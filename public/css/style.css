@@ -2,9 +2,15 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
+    color: #272727;
+    box-sizing: border-box;
 }
 
-/* dark blue: #284162 */
+h1,
+h3,
+h4 {
+    margin: 0;
+}
 
 /* ===== Typography ===== */
 /* 'Mobile-first' approach */
@@ -13,7 +19,6 @@ body {
     margin: 0;
     text-align: center;
 }
-
 
 /* ===== Navigation Bar ===== */
 /* 'Mobile-first' approach */
@@ -31,8 +36,12 @@ body {
     color: #2c4c75;
     text-decoration: none;
     padding: 1em 1.5em;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 700;
+    background: #dddddd;
+    border-radius: .5em;
+    margin-left: .5em;
+    margin-top: .5em;
 }
 
 .nav-link:hover,
@@ -45,6 +54,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: .5em;
 }
 
 nav ul a {
@@ -61,7 +71,7 @@ nav ul a {
 }
 
 /* Responsive Design for non-mobile screens */
-@media (min-width: 580px) {
+@media (min-width: 600px) {
     .nav {
         flex-direction: row;
         justify-content: space-between;
@@ -72,6 +82,14 @@ nav ul a {
     .subtitle {
         text-align: left;
     }
+
+    nav {
+        flex-direction: row;
+    }
+
+    .nav-link {
+        font-size: 1.25rem;
+    }
 }
 
 /* ===== Main Content ===== */
@@ -80,5 +98,55 @@ nav ul a {
     margin: 0 auto;
 }
 
+/* == Form == */
+.info-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5em;
+    border: .25em steelblue solid;
+    border-radius: 1em;
+    margin: 2em auto;
+    width: 50%;
+}
 
+.info-form > * {
+    margin: .5em auto;
+}
+
+.form-chunk {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.form-chunk input {
+    min-width: 50%;
+    margin-left: .5em;
+}
+
+.form-chunk label {
+    font-weight: 400;
+}
+
+.form-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.text-capital {
+    text-transform: capitalize;
+}
+
+.info-submit-btn {
+    font-size: .875rem;
+    padding: .3em .5em;
+}
+
+/* ===== Footer ===== */
+footer {
+    padding: 1.5em;
+    text-align: center;
+    background-color: rgb(106, 140, 168);
+}
 
