@@ -4,6 +4,7 @@ body {
     font-family: 'Roboto', sans-serif;
     color: #272727;
     box-sizing: border-box;
+    line-height: 1.5;
 }
 
 h1,
@@ -94,6 +95,10 @@ nav {
 .container {
     max-width: 1000px;
     margin: 0 auto;
+}
+
+.about-us {
+    padding: 3em;
 }
 
 /* == Form == */
