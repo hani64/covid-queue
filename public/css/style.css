@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* dark blue: #284162 */
+
+/* ===== Typography ===== */
+/* 'Mobile-first' approach */
+.title,
+.subtitle {
+    margin: 0;
+    text-align: center;
+}
+
+
+/* ===== Navigation Bar ===== */
+/* 'Mobile-first' approach */
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em;
+    background-color: rgb(236, 236, 236);
+}
+
+.nav-link {
+    color: #2c4c75;
+    text-decoration: none;
+    padding: 1em 1.5em;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: blue;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul a {
+    border: 1px blue solid;
+}
+
+.current-page {
+    text-decoration: underline;
+}
+
+.current-page:hover,
+.current-page:focus {
+    color: #2c4c75;
+}
+
+/* Responsive Design for non-mobile screens */
+@media (min-width: 580px) {
+    .nav {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .title,
+    .subtitle {
+        text-align: left;
+    }
+}
+
+/* ===== Main Content ===== */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+
