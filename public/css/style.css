@@ -87,6 +87,7 @@ nav {
     .nav-link {
         font-size: 1.25rem;
     }
+
 }
 
 /* ===== Main Content ===== */
@@ -120,8 +121,11 @@ nav {
 
 .form-chunk {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     width: 90%;
+    text-align: center;
 }
 
 .info-input,
@@ -159,3 +163,9 @@ footer {
     margin-bottom: 1em;
 }
 
+@media (min-width: 600px) {
+    .form-chunk {
+        flex-direction: row;
+        text-align: left;
+    }
+}
