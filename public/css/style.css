@@ -96,8 +96,8 @@ nav {
 }
 
 /* == Form == */
-.info-form,
-.login-form {
+#info-form,
+#login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -109,24 +109,25 @@ nav {
 }
 
 /* only the login should be shown to start */
-.info-form {
+#info-form {
     display: none;
 }
 
-.info-form > *,
-.login-form > * {
+#info-form > *,
+#login-form > * {
     margin: .5em auto;
 }
 
 .form-chunk {
     display: flex;
     justify-content: space-between;
-    min-width: 50%; 
+    width: 90%;
 }
 
-.info-input {
-    min-width: 50%;
+.info-input,
+.login-input {
     margin-left: .5em;
+    width: 50%;
 }
 
 .form-chunk label {
@@ -136,10 +137,6 @@ nav {
 .form-title {
     font-weight: 700;
     font-size: 1.3rem;
-}
-
-.info-input {
-    width: 50%;
 }
 
 .text-capital {
