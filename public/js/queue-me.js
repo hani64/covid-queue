@@ -1,5 +1,16 @@
 const formInputInfo = document.querySelectorAll('.info-input');
 const submitFormBtn = document.querySelector('#info-submit-btn');
+const loginBtn = document.querySelector('#login-btn');
+
+loginBtn.addEventListener('click', login);
+
+function login(e) {
+    e.preventDefault();
+
+    const helloWorld = firebase.functions().httpsCallable('helloWorld');
+    helloWorld();
+    loginBtn.disabled = 'disabled';
+}
 
 submitFormBtn.addEventListener('click', submitForm);
 
@@ -16,7 +27,9 @@ function submitForm(e) {
     let p = document.createElement('p');
     
     p.textContent += allInputInfo.join(' ');
-    document.body.appendChild(p);
+    document.querySelector(".info-form").appendChild(p);
 
     submitFormBtn.disabled = 'disabled';
 }
+
+

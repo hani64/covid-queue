@@ -7,6 +7,7 @@ body {
 }
 
 h1,
+h2,
 h3,
 h4 {
     margin: 0;
@@ -57,10 +58,6 @@ nav {
     padding-top: .5em;
 }
 
-nav ul a {
-    border: 1px blue solid;
-}
-
 .current-page {
     text-decoration: underline;
 }
@@ -99,7 +96,8 @@ nav ul a {
 }
 
 /* == Form == */
-.info-form {
+.info-form,
+.login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -110,17 +108,23 @@ nav ul a {
     width: 50%;
 }
 
-.info-form > * {
+/* only the login should be shown to start */
+.info-form {
+    display: none;
+}
+
+.info-form > *,
+.login-form > * {
     margin: .5em auto;
 }
 
 .form-chunk {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    min-width: 50%; 
 }
 
-.form-chunk input {
+.info-input {
     min-width: 50%;
     margin-left: .5em;
 }
@@ -134,6 +138,10 @@ nav ul a {
     font-size: 1.3rem;
 }
 
+.info-input {
+    width: 50%;
+}
+
 .text-capital {
     text-transform: capitalize;
 }
@@ -145,8 +153,12 @@ nav ul a {
 
 /* ===== Footer ===== */
 footer {
-    padding: 1.5em;
+    padding: 2em;
     text-align: center;
     background-color: rgb(106, 140, 168);
+}
+
+.footer-title {
+    margin-bottom: 1em;
 }
 
