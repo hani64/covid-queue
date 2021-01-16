@@ -17,6 +17,7 @@ function login(e) {
     infoForm.style.display = 'flex';
     loginForm.style.display = 'none';
 
+    // if a person with the health card number exists in the database redirect
     loginBtn.disabled = 'disabled';
 }
 
@@ -36,8 +37,7 @@ function submitForm(e) {
             allInputInfo.push(input.value);
         } else {
             allInputInfo.push("null");
-        }
-        
+        }    
     }
 
     // now all booleans for checkboxes
@@ -46,12 +46,59 @@ function submitForm(e) {
         allInputInfo.push(choice.checked);
     }
 
+    // Show user's priority number (lower is better) 
     let p = document.createElement('p');
     
-    p.textContent += allInputInfo.join(' ');
+    p.textContent = getPriorityString(allInputInfo);
     document.querySelector("#info-form").appendChild(p);
 
     submitFormBtn.disabled = 'disabled';
 }
 
+// getPriorityString(allInputInfo) computes a message, indicating a person's priority
+//     queue number.
+// Pre: allInputInfo is an array
+// array element types: string, string, string, number, bool, bool, bool, bool
 
+function getPriorityString(allInputInfo) {
+
+    // first two array elements are first and last name (unneeded for calculations)
+    // NOTE: this method of grabbing data is NOT suited well for changes in the form. 
+    //       That is, it is VERY easily broken if new input elements are added. 
+    //       Perhaps an object with fields may be better.
+    const fName = allInputInfo.shift();
+    const lName = allInputInfo.shift();
+    const age = parseInt(allInputInfo.shift());
+    const healthCardNumber = allInputInfo.shift();
+    const isEssential = allInputInfo.shift();
+    const livesInGroupSetting = allInputInfo.shift();
+    const isNurse = allInputInfo.shift();
+    const isPregnant = allInputInfo.shift();
+
+    let priorityNumber = 0;
+    // compute priority number
+    console.log(age);
+    if (typeof age === 'number' && age >= 0) {
+        priorityNumber += 10/age;
+    } else {
+        return `Error: Person with Health card #${healthCardNumber} has an invalid age.`;
+    }
+    
+    if (!isEssential) {
+        priorityNumber += 10;
+    } 
+
+    if (!livesInGroupSetting) {
+        priorityNumber += 5;
+    }
+
+    if (!isNurse) {
+        priorityNumber += 15;
+    }
+
+    if (!isPregnant) {
+        priorityNumber += 12;
+    }
+
+    return "Your priority number is (lower is better): " + priorityNumber;
+}
