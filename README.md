@@ -1,0 +1,2 @@
+# CovidQueue
+HACK THE NORTH 2021
