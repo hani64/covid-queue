@@ -4,7 +4,6 @@
 
 <head>
     <title>COVID Queuer</title>
-
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.2.3/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -18,11 +17,10 @@
     <script defer src="/__/firebase/8.2.3/firebase-remote-config.js"></script>
     <script defer src="/__/firebase/8.2.3/firebase-performance.js"></script>
     <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
+          initialize the SDK after all desired features are loaded, set useEmulator to false
+          to avoid connecting the SDK to running emulators.
+        -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -48,26 +46,67 @@
         <div class="container">
 
             <!-- existing health card holders will have their queue info shown, new members will be asked for their information -->
-            <form class="login-form">
+            <form id="login-form">
                 <label class="form-title text-capital">Please enter your health card number</label>
                 <div class="form-chunk">
                     <label class="text-capital">Health Card Number</label>
-                    <input type="text" class="info-input">
+                    <input type="text" class="login-input">
                 </div>
 
                 <input type="submit" id="login-btn" value="Login">
             </form>
 
-            <form class="info-form">
+            <form id="info-form">
                 <label class="form-title text-capital">Please enter your information</label>
+
+                <!-- first name input -->
                 <div class="form-chunk">
                     <label class="text-capital">first name</label>
                     <input type="text" class="info-input">
                 </div>
 
+                <!-- last name input -->
                 <div class="form-chunk">
                     <label class="text-capital">Last Name</label>
                     <input type="text" class="info-input">
+                </div>
+
+                <!-- age input -->
+                <div class="form-chunk">
+                    <label class="text-capital">age</label>
+                    <input type="text" class="info-input">
+                </div>
+
+                <!-- health card input -->
+                <div class="form-chunk">
+                    <label class="text-capital">health card number</label>
+                    <input type="text" class="info-input">
+                </div>
+
+                <!-- essential worker choice -->
+                <div class="form-chunk">
+                    <label class="text-capital">are you an essential worker?</label>
+                    <input type="checkbox" class="predicate-check">
+                </div>
+
+                <!-- group setting choice -->
+                <div class="form-chunk">
+                    <label class="text-capital">living in a group setting?</label>
+                    <input type="checkbox" class="predicate-check">
+                </div>
+
+
+                <!-- nurse choice -->
+                <div class="form-chunk">
+                    <label class="text-capital">Are you a nurse?</label>
+                    <input type="checkbox" class="predicate-check">
+                </div>
+
+
+                <!-- pregnant choice -->
+                <div class="form-chunk">
+                    <label class="text-capital">are you pregnant?</label>
+                    <input type="checkbox" class="predicate-check">
                 </div>
 
                 <input type="submit" id="info-submit-btn">
@@ -118,7 +157,6 @@
             }
         });
     </script>
-
     <script src="js/queue-me.js"></script>
 </body>
 

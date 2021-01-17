@@ -4,7 +4,6 @@
 
 <head>
     <title>COVID Queuer</title>
-
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.2.3/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -22,7 +21,6 @@
           to avoid connecting the SDK to running emulators.
         -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -45,15 +43,25 @@
     </header>
 
     <main>
-
+        <div class="container">
+            <div class="about-us">
+                <h3>About this website!</h3>
+                <p>Two avid programmers, Jacob Meksavanh and Hani Asim, set up this website
+                    for firms to figure out the patients who should receive COVID vaccines first.
+                </p>
+    
+                <p>Currently, the priority rating is computed using a (very) simple formula
+                    created by Jacob. He wishes to further develop this formula by referencing
+                    the organ allocation priority formula used by hospitals in the US.
+                </p>
+            </div>
+        </div>
     </main>
 
     <footer class="container">
         <h2>Hack the North 2020++</h2>
         <h4>Jacob Meksavanh and Hani Asim</h4>
     </footer>
-
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const loadEl = document.querySelector('#load');
@@ -94,4 +102,5 @@
     </script>
     <script src="js/index.js"></script>
 </body>
+
 </html>
