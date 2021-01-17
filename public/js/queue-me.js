@@ -4,15 +4,17 @@ const loginForm = document.querySelector('#login-form');
 const submitFormBtn = document.querySelector('#info-submit-btn');
 const loginBtn = document.querySelector('#login-btn');
 const allCheckboxes = document.querySelectorAll('.predicate-check');
+// document.addEventListener('load', initQueue);
 
 loginBtn.addEventListener('click', login);
-const initQueue = firebase.functions().httpsCallable('initQueue');
-initQueue();
+
 
 // login(e) collects a user's health card number and checks if they are in the system already
 // * if so, print their information
 // * else, allow them to register
 function login(e) {
+    const initQueue = firebase.functions().httpsCallable('initQueue');
+    initQueue();
     e.preventDefault();
 
     const userCheck = firebase.functions().httpsCallable('userCheck');
@@ -23,9 +25,11 @@ function login(e) {
             const loginSuccess = document.createElement('p');
             console.log(res.data["priority_number"]);
             displayTxt = (Math.round(parseFloat(res.data["priority_number"]) * 100) / 100);
-            loginSuccess.textContent = `Priority Rating: ${displayTxt}`;
-            // loginSuccess.textContent = "3";
-            loginForm.appendChild(loginSuccess);
+            const queueIndex = firebase.functions().httpsCallable('queueIndex');
+            queueIndex(res.data).then(res =>{
+                loginSuccess.textContent = `Priority Rating: ${displayTxt} | Queue Position: ${res.data}`;
+                loginForm.appendChild(loginSuccess);
+            });
         } else {
             // change visible forms
             loginForm.style.display = 'none';
@@ -129,6 +133,18 @@ function getPriorityString(allInputInfo) {
         "priority_number": priorityNumber.toString() 
       }).then(res =>{
           console.log("added a user");
+          const enQueue = firebase.functions().httpsCallable('enQueue');
+          enQueue({
+            "first_name": fName,
+            "last_name": lName,
+            "age": age.toString(),
+            "is_essential": isEssential.toString(),
+            "in_group_setting": livesInGroupSetting.toString(),
+            "is_nurse": isNurse.toString(),
+            "is_pregnant": isPregnant.toString(),
+            "health_card_number": healthCardNumber,
+            "priority_number": priorityNumber.toString() 
+          });
       });
 
     return "Your priority number is (lower is better): " + priorityNumber;

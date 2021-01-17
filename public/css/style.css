@@ -32,6 +32,7 @@ h4 {
     align-items: center;
     padding: 2em;
     background-color: rgb(236, 236, 236);
+    flex-wrap: wrap;
 }
 
 .nav-link {
@@ -103,7 +104,8 @@ nav {
 
 /* == Form == */
 #info-form,
-#login-form {
+#login-form,
+#dequeue-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -120,7 +122,8 @@ nav {
 }
 
 #info-form > *,
-#login-form > * {
+#login-form > *,
+#dequeue-form > * {
     margin: .5em auto;
 }
 
@@ -146,6 +149,7 @@ nav {
 .form-title {
     font-weight: 700;
     font-size: 1.3rem;
+    text-align: center;
 }
 
 .text-capital {
