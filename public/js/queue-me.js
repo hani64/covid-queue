@@ -14,10 +14,8 @@ function login(e) {
     e.preventDefault();
 
     const userCheck = firebase.functions().httpsCallable('userCheck');
-    // login-input: a health card the user has inputted
-    userCheck(document.querySelector('#login-input').textContent).then(res => {
-        // if a person with the health card number exists in the database redirect
-        if (res) {           // using truthy/falsy
+    userCheck(document.querySelector('#login-input').textContent)).then(res => {
+        if (userFromLoginInput) {           // using truthy/falsy
             // ... do stuff  if the user exists
             const loginSuccess = document.createElement('p');
             loginSuccess.textContent = getPriorityString(userFromLoginInput);
@@ -29,6 +27,7 @@ function login(e) {
         }    
     });
 
+    // if a person with the health card number exists in the database redirect
     loginBtn.disabled = 'disabled';
 }
 
