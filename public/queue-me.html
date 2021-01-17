@@ -36,36 +36,92 @@
                 <h4 class="subtitle">A HTN project by Jacob and Hani</h2>
             </div>
             <nav>
-                <a href="index.html" class="nav-link current-page">Home</a>
-                <a href="queue-me.html" class="nav-link">Queue Me</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="queue-me.html" class="nav-link current-page">Queue Me</a>
                 <a href="dequeue-me.html" class="nav-link">DeQueue Me</a>
             </nav>
         </div>
     </header>
-
     <main>
         <div class="container">
-            <div class="about-us">
-                <h3>About this website!</h3>
-                <p>Two avid programmers, Jacob Meksavanh and Hani Asim, set up this website
-                    for firms to figure out the patients who should receive COVID vaccines first.
-                </p>
-    
-                <p>Currently, the priority rating is computed using a (very) simple formula
-                    created by Jacob. He wishes to further develop this formula by referencing
-                    the organ allocation priority formula used by hospitals in the US.
-                </p>
-            </div>
+
+            <!-- existing health card holders will have their queue info shown, new members will be asked for their information -->
+            <form id="login-form">
+                <label class="form-title text-capital">Please enter your health card number</label>
+                <div class="form-chunk">
+                    <label class="text-capital">Health Card Number</label>
+                    <input type="text" id="login-input">
+                </div>
+
+                <input type="submit" id="login-btn" value="Login">
+            </form>
+
+            <form id="info-form">
+                <label class="form-title text-capital">Please enter your information</label>
+
+                <!-- first name input -->
+                <div class="form-chunk">
+                    <label class="text-capital">first name</label>
+                    <input type="text" class="info-input">
+                </div>
+
+                <!-- last name input -->
+                <div class="form-chunk">
+                    <label class="text-capital">Last Name</label>
+                    <input type="text" class="info-input">
+                </div>
+
+                <!-- age input -->
+                <div class="form-chunk">
+                    <label class="text-capital">age</label>
+                    <input type="text" class="info-input">
+                </div>
+
+                <!-- health card input -->
+                <div class="form-chunk">
+                    <label class="text-capital">health card number</label>
+                    <input type="text" class="info-input">
+                </div>
+
+                <!-- essential worker choice -->
+                <div class="form-chunk">
+                    <label class="text-capital">are you an essential worker?</label>
+                    <input type="checkbox" class="predicate-check">
+                </div>
+
+                <!-- group setting choice -->
+                <div class="form-chunk">
+                    <label class="text-capital">living in a group setting?</label>
+                    <input type="checkbox" class="predicate-check">
+                </div>
+
+
+                <!-- nurse choice -->
+                <div class="form-chunk">
+                    <label class="text-capital">Are you a nurse?</label>
+                    <input type="checkbox" class="predicate-check">
+                </div>
+
+
+                <!-- pregnant choice -->
+                <div class="form-chunk">
+                    <label class="text-capital">are you pregnant?</label>
+                    <input type="checkbox" class="predicate-check">
+                </div>
+
+                <input type="submit" id="info-submit-btn">
+            </form>
         </div>
     </main>
 
     <footer class="container">
-        <h2>Hack the North 2020++</h2>
+        <h2 class="footer-title">Hack the North 2020++</h2>
         <h4>Jacob Meksavanh and Hani Asim</h4>
     </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // const loadEl = document.querySelector('#load');
+            const loadEl = document.querySelector('#load');
             // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
             // // The Firebase SDK is initialized and available here!
             //
@@ -101,7 +157,7 @@
             }
         });
     </script>
-    <script src="js/index.js"></script>
+    <script src="js/queue-me.js"></script>
 </body>
 
 </html>

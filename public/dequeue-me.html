@@ -2,6 +2,7 @@
 
 <html>
 
+
 <head>
     <title>COVID Queuer</title>
     <!-- update the version number as needed -->
@@ -36,26 +37,27 @@
                 <h4 class="subtitle">A HTN project by Jacob and Hani</h2>
             </div>
             <nav>
-                <a href="index.html" class="nav-link current-page">Home</a>
+                <a href="index.html" class="nav-link">Home</a>
                 <a href="queue-me.html" class="nav-link">Queue Me</a>
-                <a href="dequeue-me.html" class="nav-link">DeQueue Me</a>
+                <a href="dequeue-me.html" class="nav-link current-page">DeQueue Me</a>
             </nav>
         </div>
     </header>
 
     <main>
         <div class="container">
-            <div class="about-us">
-                <h3>About this website!</h3>
-                <p>Two avid programmers, Jacob Meksavanh and Hani Asim, set up this website
-                    for firms to figure out the patients who should receive COVID vaccines first.
-                </p>
-    
-                <p>Currently, the priority rating is computed using a (very) simple formula
-                    created by Jacob. He wishes to further develop this formula by referencing
-                    the organ allocation priority formula used by hospitals in the US.
-                </p>
-            </div>
+
+            <!-- existing health card holders will have their queue info shown, new members will be asked for their information -->
+            <form id="dequeue-form">
+                <label class="form-title text-capital">Please enter your health card number to dequeue yourself</label>
+                <div class="form-chunk">
+                    <label class="text-capital">Health Card Number</label>
+                    <input type="text" id="dequeue-input">
+                </div>
+
+                <input type="submit" id="dequeue-btn" value="Remove">
+            </form>
+
         </div>
     </main>
 
@@ -65,7 +67,7 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // const loadEl = document.querySelector('#load');
+            const loadEl = document.querySelector('#load');
             // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
             // // The Firebase SDK is initialized and available here!
             //
@@ -101,7 +103,7 @@
             }
         });
     </script>
-    <script src="js/index.js"></script>
+    <script src="js/dequeue-me.js"></script>
 </body>
 
 </html>
