@@ -23,7 +23,7 @@ exports.initQueue = functions.https.onCall(async (data, response) => {
     return null;
   } 
   });
-initQueue();
+// initQueue();
 
 exports.enQueue = functions.https.onCall(async (data, response) => {
   qRef = admin.firestore().collection("queue").doc("queue");

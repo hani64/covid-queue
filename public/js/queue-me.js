@@ -13,14 +13,31 @@ loginBtn.addEventListener('click', login);
 function login(e) {
     e.preventDefault();
 
-    const userCheck = firebase.functions().httpsCallable('userCheck');
-    userCheck("1111").then(res =>{
-        console.log(res);
-    });
+    // const userCheck = firebase.functions().httpsCallable('userCheck');
+    // userCheck(document.querySelector('#login-input').textContent).then(res => {
+    //     if (userFromLoginInput) {           // using truthy/falsy
+    //         // ... do stuff  if the user exists
+    //         const loginSuccess = document.createElement('p');
+    //         loginSuccess.textContent = getPriorityString(userFromLoginInput);
+    //         loginForm.appendChild(loginSuccess);
+    //     } else {
+    //         // change visible forms
+    //         loginForm.style.display = 'none';
+    //         infoForm.style.display = 'flex';
+    //     }    
+    // });
 
-    // change visible forms
-    infoForm.style.display = 'flex';
-    loginForm.style.display = 'none';
+    const userFromLoginInput = null;
+    if (userFromLoginInput) {           // using truthy/falsy
+        // ... do stuff  if the user exists
+        const loginSuccess = document.createElement('p');
+        loginSuccess.textContent = getPriorityString(userFromLoginInput);
+        loginForm.appendChild(loginSuccess);
+    } else {
+        // change visible forms
+        loginForm.style.display = 'none';
+        infoForm.style.display = 'flex';
+    } 
 
     // if a person with the health card number exists in the database redirect
     loginBtn.disabled = 'disabled';
@@ -42,7 +59,7 @@ function submitForm(e) {
             allInputInfo.push(input.value);
         } else {
             allInputInfo.push("null");
-        }    
+        }
     }
 
     // now all booleans for checkboxes
@@ -53,19 +70,19 @@ function submitForm(e) {
 
     // Show user's priority number (lower is better) 
     let p = document.createElement('p');
-    
-    p.textContent = getPriorityString(allInputInfo);
+
+    p.textContent = getPriorityStringFromArray(allInputInfo);
     document.querySelector("#info-form").appendChild(p);
 
     submitFormBtn.disabled = 'disabled';
 }
 
-// getPriorityString(allInputInfo) computes a message, indicating a person's priority
+// getPriorityStringFromArray(allInputInfo) computes a message, indicating a person's priority
 //     queue number.
-// Pre: allInputInfo is an array
+// Pre: allInputInfo is an array containing the inputted information
 // array element types: string, string, string, number, bool, bool, bool, bool
 
-function getPriorityString(allInputInfo) {
+function getPriorityStringFromArray(allInputInfo) {
 
     // first two array elements are first and last name (unneeded for calculations)
     // NOTE: this method of grabbing data is NOT suited well for changes in the form. 
@@ -81,17 +98,17 @@ function getPriorityString(allInputInfo) {
     const isPregnant = allInputInfo.shift();
 
     let priorityNumber = 0;
+
     // compute priority number
-    console.log(age);
     if (typeof age === 'number' && age >= 0) {
-        priorityNumber += 10/age;
+        priorityNumber += 10 / age;
     } else {
         return `Error: Person with Health card #${healthCardNumber} has an invalid age.`;
     }
-    
+
     if (!isEssential) {
         priorityNumber += 10;
-    } 
+    }
 
     if (!livesInGroupSetting) {
         priorityNumber += 5;
@@ -104,20 +121,44 @@ function getPriorityString(allInputInfo) {
     if (!isPregnant) {
         priorityNumber += 12;
     }
-    const addUser = firebase.functions().httpsCallable('addUser');
-    addUser({
-        "first_name": fName,
-        "last_name": lName,
-        "age": age.toString(),
-        "is_essential": isEssential.toString(),
-        "in_group_setting": livesInGroupSetting.toString(),
-        "is_nurse": isNurse.toString(),
-        "is_pregnant": isPregnant.toString(),
-        "health_card_number": healthCardNumber,
-        "priority_number": priorityNumber 
-      }).then(res =>{
-          console.log("added a user");
-      });
 
-    return "Your priority number is (lower is better): " + priorityNumber;
+    return "Your priority rating (lower is better): " + priorityNumber;
+}
+
+
+// getPriorityString(user) given a JSON object user, produce a message indicating the user's
+//    priority rating
+function getPriorityString(user) {
+
+    // IF a null user is passed
+    if (user === null) {
+        return 'Error! This user does not exist';
+    }
+
+    let priorityNumber = 0;
+
+    // compute priority number
+    if (parseInt(user.age) >= 0) {
+        priorityNumber += 10 / user.age;
+    } else {
+        return `Error: Person with Health card #${user.health_card_number} has an invalid age.`;
+    }
+
+    if (!user.is_essential) {
+        priorityNumber += 10;
+    }
+
+    if (!user.in_group_setting) {
+        priorityNumber += 5;
+    }
+
+    if (!user.is_nurse) {
+        priorityNumber += 15;
+    }
+
+    if (!user.is_pregnant) {
+        priorityNumber += 12;
+    }
+
+    return "Your priority rating (lower is better): " + priorityNumber;
 }
