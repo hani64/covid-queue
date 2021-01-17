@@ -50,7 +50,7 @@
                 <label class="form-title text-capital">Please enter your health card number</label>
                 <div class="form-chunk">
                     <label class="text-capital">Health Card Number</label>
-                    <input type="text" class="login-input">
+                    <input type="text" id="login-input">
                 </div>
 
                 <input type="submit" id="login-btn" value="Login">
@@ -150,10 +150,10 @@
                     'remoteConfig',
                     'performance',
                 ].filter(feature => typeof app[feature] === 'function');
-                loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+                // loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
             } catch (e) {
                 console.error(e);
-                loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+                // loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
             }
         });
     </script>

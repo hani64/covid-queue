@@ -23,7 +23,6 @@ exports.initQueue = functions.https.onCall(async (data, response) => {
     return null;
   } 
   });
-initQueue();
 
 exports.enQueue = functions.https.onCall(async (data, response) => {
   qRef = admin.firestore().collection("queue").doc("queue");
@@ -46,7 +45,7 @@ exports.enQueue = functions.https.onCall(async (data, response) => {
   });
 
 exports.addUser = functions.https.onCall((data, response) => {
-  // console.log(data);
+  console.log(data);
   admin.firestore().collection("users").doc(data["health_card_number"]).set({
     "first_name": data["first_name"],
     "last_name": data["last_name"],
@@ -56,7 +55,7 @@ exports.addUser = functions.https.onCall((data, response) => {
     "is_nurse": data["is_nurse"],
     "is_pregnant": data["is_pregnant"],
     "health_card_number": data["health_card_number"],
-    "priority_queue": data["priority_queue"]
+    "priority_number": data["priority_number"]
   });
 });
 

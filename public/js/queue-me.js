@@ -6,6 +6,8 @@ const loginBtn = document.querySelector('#login-btn');
 const allCheckboxes = document.querySelectorAll('.predicate-check');
 
 loginBtn.addEventListener('click', login);
+const initQueue = firebase.functions().httpsCallable('initQueue');
+initQueue();
 
 // login(e) collects a user's health card number and checks if they are in the system already
 // * if so, print their information
@@ -14,13 +16,23 @@ function login(e) {
     e.preventDefault();
 
     const userCheck = firebase.functions().httpsCallable('userCheck');
-    userCheck("1111").then(res =>{
+    userCheck(document.querySelector('#login-input').value).then(res => {
         console.log(res);
+        if (res.data) {           // using truthy/falsey
+            // ... do stuff  if the user exists
+            const loginSuccess = document.createElement('p');
+            console.log(res.data["priority_number"]);
+            displayTxt = (Math.round(parseFloat(res.data["priority_number"]) * 100) / 100);
+            loginSuccess.textContent = `Priority Rating: ${displayTxt}`;
+            // loginSuccess.textContent = "3";
+            loginForm.appendChild(loginSuccess);
+        } else {
+            // change visible forms
+            loginForm.style.display = 'none';
+            infoForm.style.display = 'flex';
+        }
     });
 
-    // change visible forms
-    infoForm.style.display = 'flex';
-    loginForm.style.display = 'none';
 
     // if a person with the health card number exists in the database redirect
     loginBtn.disabled = 'disabled';
@@ -114,7 +126,7 @@ function getPriorityString(allInputInfo) {
         "is_nurse": isNurse.toString(),
         "is_pregnant": isPregnant.toString(),
         "health_card_number": healthCardNumber,
-        "priority_number": priorityNumber 
+        "priority_number": priorityNumber.toString() 
       }).then(res =>{
           console.log("added a user");
       });
