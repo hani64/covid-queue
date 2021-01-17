@@ -134,7 +134,7 @@ nav {
 }
 
 .info-input,
-.login-input {
+#login-input {
     margin-left: .5em;
     width: 50%;
 }
