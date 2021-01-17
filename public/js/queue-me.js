@@ -13,19 +13,31 @@ loginBtn.addEventListener('click', login);
 function login(e) {
     e.preventDefault();
 
-    const userCheck = firebase.functions().httpsCallable('userCheck');
-    userCheck(document.querySelector('#login-input').textContent)).then(res => {
-        if (userFromLoginInput) {           // using truthy/falsy
-            // ... do stuff  if the user exists
-            const loginSuccess = document.createElement('p');
-            loginSuccess.textContent = getPriorityString(userFromLoginInput);
-            loginForm.appendChild(loginSuccess);
-        } else {
-            // change visible forms
-            loginForm.style.display = 'none';
-            infoForm.style.display = 'flex';
-        }    
-    });
+    // const userCheck = firebase.functions().httpsCallable('userCheck');
+    // userCheck(document.querySelector('#login-input').textContent).then(res => {
+    //     if (userFromLoginInput) {           // using truthy/falsy
+    //         // ... do stuff  if the user exists
+    //         const loginSuccess = document.createElement('p');
+    //         loginSuccess.textContent = getPriorityString(userFromLoginInput);
+    //         loginForm.appendChild(loginSuccess);
+    //     } else {
+    //         // change visible forms
+    //         loginForm.style.display = 'none';
+    //         infoForm.style.display = 'flex';
+    //     }    
+    // });
+
+    const userFromLoginInput = null;
+    if (userFromLoginInput) {           // using truthy/falsy
+        // ... do stuff  if the user exists
+        const loginSuccess = document.createElement('p');
+        loginSuccess.textContent = getPriorityString(userFromLoginInput);
+        loginForm.appendChild(loginSuccess);
+    } else {
+        // change visible forms
+        loginForm.style.display = 'none';
+        infoForm.style.display = 'flex';
+    } 
 
     // if a person with the health card number exists in the database redirect
     loginBtn.disabled = 'disabled';
